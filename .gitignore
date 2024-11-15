@@ -1,0 +1,4 @@
+bazel-bin
+bazel-cuda-learning
+bazel-out
+bazel-testlogs
