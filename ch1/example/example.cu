@@ -1,6 +1,6 @@
-#include "ch2/example/example.h"
+#include "ch1/example/example.h"
 #include <numeric>
-#include <vector> 
+#include <vector>
 
 __host__ __device__ inline float sinsum(float x, int terms) {
   float x2 = x * x;
