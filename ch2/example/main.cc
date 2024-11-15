@@ -1,6 +1,5 @@
 
-#include "example/example.h"
-#include <thrust/device_vector.h>
+#include "ch2/example/example.h"
 
 int main() {
   // Arguments
