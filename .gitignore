@@ -3,3 +3,4 @@ bazel-cuda-learning
 bazel-out
 bazel-testlogs
 .bazelrc
+.vscode
