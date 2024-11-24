@@ -16,4 +16,5 @@ cc_binary(
     name = "main",
     srcs = ["main.cc"],
     deps = [":kernel3d"],
+    linkshared = True,
 )
