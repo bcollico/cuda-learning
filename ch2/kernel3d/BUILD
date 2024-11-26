@@ -9,12 +9,11 @@ cuda_library(
         "kernel3d.h",
         "utils.h",
     ],
-    copts = ["-dc"],  # allow __device__ function defined in separate compilation unit from kernel.
+    rdc = True,
 )
 
 cc_binary(
     name = "main",
     srcs = ["main.cc"],
     deps = [":kernel3d"],
-    linkshared = True,
 )

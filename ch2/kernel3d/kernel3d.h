@@ -7,7 +7,6 @@ struct Index3D final {
     int y{};
     int z{};
 
-    __host__ __device__ Index3D();
     __host__ __device__ Index3D(int x, int y, int z) : x(x), y(y), z(z) {}
 
     __host__ __device__ bool operator==(const Index3D& other) {
