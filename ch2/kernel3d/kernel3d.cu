@@ -3,9 +3,9 @@
 #include "ch2/kernel3d/utils.h"
 
 __device__ Index3D get_index_3d() {
-    Index3D idx(blockIdx.x * blockDim.x * threadIdx.x,
-                blockIdx.y * blockDim.y * threadIdx.y,
-                blockIdx.z * blockDim.z * threadIdx.z);
+    Index3D idx(blockIdx.x * blockDim.x + threadIdx.x,
+                blockIdx.y * blockDim.y + threadIdx.y,
+                blockIdx.z * blockDim.z + threadIdx.z);
     return idx;
 }
 

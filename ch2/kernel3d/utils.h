@@ -18,5 +18,5 @@ __device__ __inline__ int block_rank_in_grid() {
 }
 
 __device__ __inline__ int thread_rank_in_grid() {
-    return block_rank_in_grid() * block_size() + thread_rank_in_grid();
+    return block_rank_in_grid() * block_size() + thread_rank_in_block();
 }
