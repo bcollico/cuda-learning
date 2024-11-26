@@ -2,16 +2,16 @@
 #include "ch2/kernel3d/kernel3d.h"
 #include "ch2/kernel3d/utils.h"
 
+
 __device__ Index3D get_index_3d() {
-    Index3D idx(blockIdx.x * blockDim.x + threadIdx.x,
-                blockIdx.y * blockDim.y + threadIdx.y,
-                blockIdx.z * blockDim.z + threadIdx.z);
-    return idx;
+    return Index3D(blockIdx.x * blockDim.x + threadIdx.x,
+                   blockIdx.y * blockDim.y + threadIdx.y,
+                   blockIdx.z * blockDim.z + threadIdx.z);
 }
 
 void run_kernel(int nx, int ny, int nz, int id) {
-    dim3 thread3d(32, 8, 2);    // 32*8*2 = 512
-    dim3 block3d(16, 64, 128);  // 16*64*128 = 131072
+    dim3 threads_in_block(32, 8, 2);
+    dim3 blocks_in_grid(16, 64, 128);
 
     Index3D grid_extents(nx, ny, nz);
 
@@ -23,7 +23,8 @@ void run_kernel(int nx, int ny, int nz, int id) {
     cudaMalloc(&ptr_a, grid_extents.prod() * sizeof(TypeA));
     cudaMalloc(&ptr_b, grid_extents.prod() * sizeof(TypeB));
 
-    grid_3d<<<block3d, thread3d>>>(ptr_a, ptr_b, grid_extents, id);
+    grid_3d<<<blocks_in_grid, threads_in_block>>>(ptr_a, ptr_b, grid_extents,
+                                                  id);
 }
 
 __global__ void grid_3d(int* grid_a, float* grid_b, const Index3D grid_extents,
