@@ -42,10 +42,13 @@ __global__ void grid_3d(int* grid_a, float* grid_b, const Index3D grid_extents,
         std::sqrt(static_cast<float>(thread_rank));
 
     if (thread_rank == id) {
-        printf("array size = %d\n", grid_extents.prod());
-        printf("thread block %3d x %3d x %3d = %d\n", blockDim.x, blockDim.y,
+        printf("array size:\t %d\n", grid_extents.prod());
+        printf("thread block:\t %d x %d x %d = %d\n", blockDim.x, blockDim.y,
                blockDim.z, block_size());
-        printf("thread grid %3d x %3d x %3d = %d\n", gridDim.x, gridDim.y,
+        printf("thread grid:\t %d x %d x %d = %d\n", gridDim.x, gridDim.y,
                gridDim.z, grid_size());
+        printf("Thread rank in grid:\t %d\n", thread_rank);
+        printf("Thread rank in block:\t %d\n", thread_rank_in_block());
+        printf("Block rank in grid:\t %d\n", block_rank_in_grid());
     }
 }

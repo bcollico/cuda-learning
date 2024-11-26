@@ -10,10 +10,9 @@ int main(int argc, char* argv[]) {
     constexpr int NZ = 256;
 
     run_kernel(NX, NY, NZ, id);
+
+    // Synchronize to get printout.
     cudaDeviceSynchronize();
-    cudaError_t err = cudaGetLastError();
-    if (err != cudaSuccess) {
-        std::cerr << "CUDA error: " << cudaGetErrorString(err) << std::endl;
-    }
+
     return 0;
 }
